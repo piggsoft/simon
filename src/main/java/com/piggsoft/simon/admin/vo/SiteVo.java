@@ -9,6 +9,8 @@ public class SiteVo {
 
     @NotBlank
     private String hostName;
+    private String owername;
+    private String title;
 
     public String getHostName() {
         return hostName;
