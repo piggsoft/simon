@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -18,12 +19,18 @@ import java.util.List;
 @ControllerAdvice
 public class ExceptionProcesser {
 
+    /**
+     * 统一的参数验证异常处理
+     * @param e
+     * @return
+     */
     @ExceptionHandler(value = BindException.class)
+    @ResponseBody
     public ResponseEntity<ApiResponse> handleException(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         String[] strArray = new String[fieldErrors.size()];
-        for (int i=0; i<fieldErrors.size(); i++) {
+        for (int i=0; i<fieldErrors.size(); i++) {//组合异常
             FieldError fieldError = fieldErrors.get(i);
             strArray[i] = fieldError.getField() + Constants.MESSAGE_FIELD_SEPARATOR + fieldError.getDefaultMessage();
         }

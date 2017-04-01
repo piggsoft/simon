@@ -11,6 +11,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class Config {
 
+    /**
+     * mybatis 分页插件配置
+     * @return
+     */
     @Bean
     public Interceptor[] mybatisInterceptors() {
         PageHelper pageHelper = new PageHelper();

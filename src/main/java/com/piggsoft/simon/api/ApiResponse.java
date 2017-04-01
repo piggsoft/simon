@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 /**
  * Created by piggs on 2017/3/31.
+ * 统一的api返回数据
  */
 public class ApiResponse {
 
