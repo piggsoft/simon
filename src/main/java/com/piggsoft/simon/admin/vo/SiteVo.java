@@ -8,15 +8,31 @@ import org.hibernate.validator.constraints.NotBlank;
 public class SiteVo {
 
     @NotBlank
-    private String hostName;
+    private String siteName;
     private String owername;
     private String title;
 
-    public String getHostName() {
-        return hostName;
+    public String getSiteName() {
+        return siteName;
     }
 
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
+    }
+
+    public String getOwername() {
+        return owername;
+    }
+
+    public void setOwername(String owername) {
+        this.owername = owername;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
