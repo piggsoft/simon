@@ -1,5 +1,6 @@
-= RESTful Notes Getting Started Guide
-Andy Wilkinson;
+= Blog后台API文档
+piggsof
+v0.0.1. 2017-4-4
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
