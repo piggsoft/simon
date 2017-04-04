@@ -7,4 +7,7 @@ Andy Wilkinson;
 :toclevels: 4
 :sectlinks:
 
-include::{snippets}/index/curl-request.adoc[]
+include::{snippets}/register-site/curl-request.adoc[]
+
+
+include::{snippets}/register-site/request-parameters.adoc[]
