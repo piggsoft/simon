@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by piggs on 2017/4/2.
  */
-public class SiteControllerDocument extends SimonApplicationTests {
+public class SiteControllerDocumentation extends SimonApplicationTests {
 
     @Test
     public void registerSite() throws Exception {

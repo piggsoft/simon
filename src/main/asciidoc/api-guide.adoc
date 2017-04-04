@@ -1,0 +1,10 @@
+= RESTful Notes Getting Started Guide
+Andy Wilkinson;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+include::{snippets}/index/curl-request.adoc[]
