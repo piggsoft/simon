@@ -5,7 +5,6 @@ import com.piggsoft.simon.admin.vo.SiteVo;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
-import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
@@ -25,12 +24,23 @@ public class SiteControllerDocumentation extends SimonApplicationTests {
 
         getMockMvc().perform(post("/admin/site")
                 .param("siteName", "哈哈")
+                .param("owner", "飞翔的猪猪侠")
+                .param("title", "小毛驴的技术空间")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(getDocumentationHandler().document(
-                        requestParameters(fields.withName("siteName").description("网站名称")),
+                        requestParameters(
+                                fields.withName("siteName").description("网站名称"),
+                                fields.withName("owner").description("拥有者姓名"),
+                                fields.withName("title").description("网站标题")
+                        ),
                         responseFields(
-                        fieldWithPath("siteName").description("The user's contact details"))));
+                                fieldWithPath("siteName").description("网站名称"),
+                                fieldWithPath("owner").description("拥有者姓名"),
+                                fieldWithPath("title").description("网站标题")
+                                )
+                )
+                );
     }
 
 }

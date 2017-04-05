@@ -9,7 +9,9 @@ public class SiteVo {
 
     @NotBlank
     private String siteName;
-    private String owername;
+    @NotBlank
+    private String owner;
+    @NotBlank
     private String title;
 
     public String getSiteName() {
@@ -20,12 +22,12 @@ public class SiteVo {
         this.siteName = siteName;
     }
 
-    public String getOwername() {
-        return owername;
+    public String getOwner() {
+        return owner;
     }
 
-    public void setOwername(String owername) {
-        this.owername = owername;
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getTitle() {
