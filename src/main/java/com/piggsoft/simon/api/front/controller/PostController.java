@@ -32,4 +32,8 @@ public class PostController {
         return ApiRes.ok(req);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ApiRes<Object> query(@PathVariable("id") Integer id) {
+        return ApiRes.ok(id);
+    }
 }

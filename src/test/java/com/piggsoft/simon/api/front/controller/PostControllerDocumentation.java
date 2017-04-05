@@ -5,13 +5,16 @@ import com.piggsoft.simon.api.constants.APIConstants;
 import com.piggsoft.simon.api.front.req.PostReq;
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.piggsoft.simon.api.res.ApiRes.ok;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,6 +42,20 @@ public class PostControllerDocumentation extends SimonApplicationTests {
                 requestFields(fields.withPath("title").description("post标题"))
         ))
         ;
+    }
+
+    @Test
+    public void query() throws Exception {
+        getMockMvc()
+                .perform(
+                        RestDocumentationRequestBuilders.get("/api/front/v1/post/{id}", 123)
+                ).andExpect(status().isOk())
+                .andDo(print())
+                .andDo(getDocumentationHandler().document(
+                        pathParameters(
+                                parameterWithName("id").description("post id")
+                        )
+                ));
     }
 
 }
