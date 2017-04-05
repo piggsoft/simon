@@ -1,7 +1,7 @@
 package com.piggsoft.simon.configuration;
 
-import com.piggsoft.simon.api.ApiResponse;
-import com.piggsoft.simon.constants.APIConstants;
+import com.piggsoft.simon.api.res.ApiRes;
+import com.piggsoft.simon.api.constants.APIConstants;
 import com.piggsoft.simon.constants.Constants;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
@@ -26,7 +26,7 @@ public class ExceptionProcesser {
      */
     @ExceptionHandler(value = BindException.class)
     @ResponseBody
-    public ResponseEntity<ApiResponse> handleException(BindException e) {
+    public ApiRes<Object> handleException(BindException e) {
         BindingResult bindingResult = e.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         String[] strArray = new String[fieldErrors.size()];
@@ -35,6 +35,12 @@ public class ExceptionProcesser {
             strArray[i] = fieldError.getField() + Constants.MESSAGE_FIELD_SEPARATOR + fieldError.getDefaultMessage();
         }
 
-        return ApiResponse.error(APIConstants.PARAMS_ERROR_CODE, String.join(Constants.FIELD_FIELD_SEPARATOR, strArray));
+        return ApiRes.error(APIConstants.PARAMS_ERROR_CODE, String.join(Constants.FIELD_FIELD_SEPARATOR, strArray));
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    @ResponseBody
+    public ApiRes<Object> handleException(Exception e) {
+        return ApiRes.error(APIConstants.API_ERROR_UNKNOW_CODE, e.getMessage());
     }
 }

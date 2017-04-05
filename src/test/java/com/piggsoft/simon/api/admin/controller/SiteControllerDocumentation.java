@@ -1,7 +1,7 @@
-package com.piggsoft.simon.admin.controller;
+package com.piggsoft.simon.api.admin.controller;
 
 import com.piggsoft.simon.SimonApplicationTests;
-import com.piggsoft.simon.admin.vo.SiteVo;
+import com.piggsoft.simon.api.admin.req.SiteReq;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
@@ -20,9 +20,9 @@ public class SiteControllerDocumentation extends SimonApplicationTests {
     @Test
     public void registerSite() throws Exception {
 
-        ParamsConstrainedFields fields = new ParamsConstrainedFields(SiteVo.class);
+        ParamsConstrainedFields fields = new ParamsConstrainedFields(SiteReq.class);
 
-        getMockMvc().perform(post("/admin/site")
+        getMockMvc().perform(post("/api/admin/v1/site")
                 .param("siteName", "哈哈")
                 .param("owner", "飞翔的猪猪侠")
                 .param("title", "小毛驴的技术空间")

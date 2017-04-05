@@ -1,11 +1,11 @@
-package com.piggsoft.simon.admin.vo;
+package com.piggsoft.simon.api.admin.req;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * Created by piggs on 2017/3/31.
  */
-public class SiteVo {
+public class SiteReq {
 
     @NotBlank
     private String siteName;
