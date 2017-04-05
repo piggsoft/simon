@@ -47,7 +47,7 @@ public class SimonApplicationTests {
 
 	@Before
 	public void setUp() {
-		this.documentationHandler = document("{method-name}",
+		this.documentationHandler = document("{class-name}/{method-name}",
 				preprocessRequest(prettyPrint()),
 				preprocessResponse(prettyPrint()));
 

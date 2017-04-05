@@ -1,6 +1,7 @@
 package com.piggsoft.simon.api.front.controller;
 
 import com.piggsoft.simon.SimonApplicationTests;
+import com.piggsoft.simon.api.constants.APIConstants;
 import com.piggsoft.simon.api.front.req.PostReq;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -11,6 +12,7 @@ import java.util.Map;
 import static com.piggsoft.simon.api.res.ApiRes.ok;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -32,6 +34,7 @@ public class PostControllerDocumentation extends SimonApplicationTests {
             .contentType(MediaType.APPLICATION_JSON)
                 .content(getObjectMapper().writeValueAsString(params))
         ).andExpect(status().isCreated())
+                .andExpect(jsonPath("code").value(APIConstants.API_SUCCESS_CODE))
         .andDo(getDocumentationHandler().document(
                 requestFields(fields.withPath("title").description("post标题"))
         ))
