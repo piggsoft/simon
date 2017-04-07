@@ -33,7 +33,7 @@ public class PostControllerDocumentation extends SimonApplicationTests {
         Map<String, Object> params = new HashMap<>();
         params.put("title", "新的博客");
 
-        getMockMvc().perform(post("/api/front/v1/post")
+        getMockMvc().perform(post("/api/v1/front/post")
             .contentType(MediaType.APPLICATION_JSON)
                 .content(getObjectMapper().writeValueAsString(params))
         ).andExpect(status().isCreated())
@@ -48,7 +48,7 @@ public class PostControllerDocumentation extends SimonApplicationTests {
     public void query() throws Exception {
         getMockMvc()
                 .perform(
-                        RestDocumentationRequestBuilders.get("/api/front/v1/post/{id}", 123)
+                        RestDocumentationRequestBuilders.get("/api/v1/front/post/{id}", 123)
                 ).andExpect(status().isOk())
                 .andDo(print())
                 .andDo(getDocumentationHandler().document(
