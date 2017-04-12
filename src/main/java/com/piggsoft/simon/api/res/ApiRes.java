@@ -1,7 +1,10 @@
 package com.piggsoft.simon.api.res;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.piggsoft.simon.api.constants.APIConstants;
 import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 /**
  * Created by piggs on 2017/3/31.
@@ -12,6 +15,7 @@ public class ApiRes<T> {
     private int code;
     private T data;
     private String message;
+    private List<Link> _links;
 
     public ApiRes() {
     }
@@ -60,5 +64,13 @@ public class ApiRes<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public List<Link> get_links() {
+        return _links;
+    }
+
+    public void set_links(List<Link> _links) {
+        this._links = _links;
     }
 }

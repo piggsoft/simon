@@ -22,7 +22,7 @@ public class SiteControllerDocumentation extends SimonApplicationTests {
 
         ParamsConstrainedFields fields = new ParamsConstrainedFields(SiteReq.class);
 
-        getMockMvc().perform(post("/api/admin/v1/site")
+        getMockMvc().perform(post("/api/admin/v1.0/site")
                 .param("siteName", "哈哈")
                 .param("owner", "飞翔的猪猪侠")
                 .param("title", "小毛驴的技术空间")
