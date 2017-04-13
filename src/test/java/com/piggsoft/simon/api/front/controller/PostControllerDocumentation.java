@@ -38,14 +38,10 @@ public class PostControllerDocumentation extends SimonApplicationTests {
         getMockMvc().perform(post("/api/v1.0/front/posts")
             .contentType(MediaType.APPLICATION_JSON)
                 .content(getObjectMapper().writeValueAsString(params))
-        ).andExpect(status().isCreated())
-                .andExpect(jsonPath("code").value(APIConstants.API_SUCCESS_CODE))
+        ).andExpect(status().isOk())
         .andDo(print())
         .andDo(getDocumentationHandler().document(
-                requestFields(fields.withPath("title").description("post标题")),
-                links(
-                        linkWithRel("query").description("查询某个post")
-                )
+                requestFields(fields.withPath("title").description("post标题"))
         ))
         ;
     }

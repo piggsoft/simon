@@ -10,14 +10,12 @@ package com.piggsoft.simon.api.front.controller;
 import com.piggsoft.simon.api.constants.APIConstants;
 import com.piggsoft.simon.api.front.req.PostReq;
 import com.piggsoft.simon.api.res.ApiRes;
-import org.springframework.hateoas.Link;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 /**
  * @author yaochen4
@@ -33,14 +31,12 @@ public class PostController {
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
     public ApiRes<PostReq> add(@Validated @RequestBody PostReq req) {
-        req.add(linkTo(methodOn(PostController.class).add(req)).withSelfRel());
         return ApiRes.ok(req);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ApiRes<Object> query(@PathVariable("id") Integer id) {
-        linkTo(PostController.class).withSelfRel();
         return ApiRes.ok(id);
     }
 

@@ -7,8 +7,6 @@
  */
 package com.piggsoft.simon.api.front.req;
 
-import org.springframework.hateoas.ResourceSupport;
-
 import java.util.Date;
 
 /**
@@ -17,7 +15,7 @@ import java.util.Date;
  * @create 2017/4/5
  * @since 1.0
  */
-public class PostReq extends ResourceSupport {
+public class PostReq{
 
     private String title;
     private String content;
