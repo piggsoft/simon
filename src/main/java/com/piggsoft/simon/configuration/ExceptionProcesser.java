@@ -3,6 +3,8 @@ package com.piggsoft.simon.configuration;
 import com.piggsoft.simon.api.res.ApiRes;
 import com.piggsoft.simon.api.constants.APIConstants;
 import com.piggsoft.simon.constants.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,8 @@ import java.util.List;
 @ControllerAdvice
 public class ExceptionProcesser {
 
+    public static final Logger LOGGER = LoggerFactory.getLogger(ExceptionProcesser.class);
+
     /**
      * 统一的参数验证异常处理
      * @param e
@@ -27,6 +31,9 @@ public class ExceptionProcesser {
     @ExceptionHandler(value = BindException.class)
     @ResponseBody
     public ApiRes<Object> handleException(BindException e) {
+
+        LOGGER.error(e.getMessage(), e);
+
         BindingResult bindingResult = e.getBindingResult();
         List<FieldError> fieldErrors = bindingResult.getFieldErrors();
         String[] strArray = new String[fieldErrors.size()];
@@ -41,6 +48,8 @@ public class ExceptionProcesser {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public ApiRes<Object> handleException(Exception e) {
+        LOGGER.error(e.getMessage(), e);
+
         return ApiRes.error(APIConstants.API_ERROR_UNKNOW_CODE, e.getMessage());
     }
 }

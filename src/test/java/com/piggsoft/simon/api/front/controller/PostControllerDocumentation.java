@@ -10,6 +10,8 @@ import org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
+import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.links;
 import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
@@ -33,11 +35,12 @@ public class PostControllerDocumentation extends SimonApplicationTests {
         Map<String, Object> params = new HashMap<>();
         params.put("title", "新的博客");
 
-        getMockMvc().perform(post("/api/v1/front/post")
+        getMockMvc().perform(post("/api/v1/front/posts")
             .contentType(MediaType.APPLICATION_JSON)
                 .content(getObjectMapper().writeValueAsString(params))
+                .header("Authorization", "Bearer 1b2911e6-8c46-45af-99fc-e6c4bbe7e2a1")
         ).andExpect(status().isCreated())
-                .andExpect(jsonPath("code").value(APIConstants.API_SUCCESS_CODE))
+        .andDo(print())
         .andDo(getDocumentationHandler().document(
                 requestFields(fields.withPath("title").description("post标题"))
         ))
@@ -48,7 +51,7 @@ public class PostControllerDocumentation extends SimonApplicationTests {
     public void query() throws Exception {
         getMockMvc()
                 .perform(
-                        RestDocumentationRequestBuilders.get("/api/v1/front/post/{id}", 123)
+                        RestDocumentationRequestBuilders.get("/api/v1/front/posts/{id}", 123)
                 ).andExpect(status().isOk())
                 .andDo(print())
                 .andDo(getDocumentationHandler().document(

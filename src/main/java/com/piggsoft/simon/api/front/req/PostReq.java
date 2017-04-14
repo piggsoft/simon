@@ -15,7 +15,7 @@ import java.util.Date;
  * @create 2017/4/5
  * @since 1.0
  */
-public class PostReq {
+public class PostReq{
 
     private String title;
     private String content;
