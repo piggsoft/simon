@@ -38,7 +38,8 @@ public class PostControllerDocumentation extends SimonApplicationTests {
         getMockMvc().perform(post("/api/v1.0/front/posts")
             .contentType(MediaType.APPLICATION_JSON)
                 .content(getObjectMapper().writeValueAsString(params))
-        ).andExpect(status().isOk())
+                .header("Authorization", "Bearer 1b2911e6-8c46-45af-99fc-e6c4bbe7e2a1")
+        ).andExpect(status().isCreated())
         .andDo(print())
         .andDo(getDocumentationHandler().document(
                 requestFields(fields.withPath("title").description("post标题"))
@@ -50,7 +51,7 @@ public class PostControllerDocumentation extends SimonApplicationTests {
     public void query() throws Exception {
         getMockMvc()
                 .perform(
-                        RestDocumentationRequestBuilders.get("/api/front/v1.0/posts/{id}", 123)
+                        RestDocumentationRequestBuilders.get("/api/v1.0/front/posts/{id}", 123)
                 ).andExpect(status().isOk())
                 .andDo(print())
                 .andDo(getDocumentationHandler().document(
